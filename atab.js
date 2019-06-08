@@ -1,5 +1,3 @@
-var bigInt = require("big-integer");
-
 function checkSettings (check_items) {
     const prob_sbb = [32768, 16384, 8192, 4096],
     prob_shbb = [520.1, 496.5, 455.1, 409.6],
