@@ -12,22 +12,24 @@ function checkSettings (check_items) {
     prob_cherry_B = [12, 11.3, 10.2, 9.43],
     prob_chanceA_B = [6.66, 6.66, 6.09, 5.43],
     prob_bt_meguru = [2.58, 3.13, 3.04, 3.72],
-    prob_bt_sumire = [3.15, 2.56, 3.7, 3.04],
     prob_bt20_meguru = [2.58, 3.13, 3.08, 3.83],
+    prob_bt_sumire = [3.15, 2.56, 3.7, 3.04],
     prob_bt20_sumire = [3.15, 2.56, 3.76, 3.13],
     prob_bt_maguro = [5, 5, 4.17, 4.17],
     prob_bt_class = [12.5, 12.5, 8.3, 8.3],
     prob_bt_sarome = [66.7, 0, 33.3, 33.3],
-    prob_bt_ta = [0, 1, 1, 1],
-    prob_bt_tf = [0, 0, 1, 1],
-    prob_bt_le = [0, 0, 0, 1],
+    prob_bt_ta = [0, 100, 100, 100],
+    prob_bt_tf = [0, 0, 1000, 1000],
+    prob_bt20_tf = [0, 0, 100, 100],
+    prob_bt_le = [0, 0, 0, 1000],
+    prob_bt20_le = [0, 0, 0, 100],
     prob_bt_juwan = [0, 0, 1, 1],
     prob_bt_voice_A = [2.54, 2.55, 2.2, 2.7],
     prob_bt_voice_B = [2.07, 2.09, 2.69, 2.2],
     prob_bt_voice_C = [8, 8, 5.99, 5.99],
-    prob_bt_voice_D = [0, 1, 1, 1],
-    prob_bt_voice_E = [0, 0, 1, 1],
-    prob_bt_voice_F = [0, 0, 0, 1],
+    prob_bt_voice_D = [0, 250, 250, 250],
+    prob_bt_voice_E = [0, 0, 500, 500],
+    prob_bt_voice_F = [0, 0, 0, 500],
     prob_tr_br = [0, 1, 1, 1],
     prob_tr_kirin = [0, 0, 1, 1],
     prob_tr_rainbow = [0, 0, 0, 1],
@@ -164,11 +166,11 @@ function checkSettings (check_items) {
         check_all = multi_array(check_all, check_bt20_ta)
     }
     if ("bt20_tf" in check_items){
-        var check_bt20_tf = Probability_calc(bt20_img_num, check_items["bt20_tf"], prob_bt_tf);
+        var check_bt20_tf = Probability_calc(bt20_img_num, check_items["bt20_tf"], prob_bt20_tf);
         check_all = multi_array(check_all, check_bt20_tf)
     }
     if ("bt20_le" in check_items){
-        var check_bt20_le = Probability_calc(bt20_img_num, check_items["bt20_le"], prob_bt_le);
+        var check_bt20_le = Probability_calc(bt20_img_num, check_items["bt20_le"], prob_bt20_le);
         check_all = multi_array(check_all, check_bt20_le)
     }
 
@@ -242,6 +244,8 @@ function checkSettings (check_items) {
 
 
 function Probability_calc(base, target, prob) {
+    if (target == "0") return [1,1,1,1];
+
     var settings = new Array(0);
     var over_digit = 0;
 
