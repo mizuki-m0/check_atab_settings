@@ -331,15 +331,20 @@ function multi_array(all, now) {
         settings_tmp.push (all[index] * now[index] );
     }
 
-    var adjust = false
+    var need_adjust = false
     settings_tmp.forEach(element => {
-        var element_length = Num2FracStr(element).length;
+        var spl_element = String(element).split("e");
+        if (spl_element[1] < 0){
+            spl_element[1] = -spl_element[1];
+        }
+        var element_length = String(spl_element[0]).length + spl_element[1];
+
         if (element_length > 250){
-            adjust = true;
+            need_adjust = true;
         }
     });
 
-    if (adjust){
+    if (need_adjust){
         for (let index = 0; index < settings_tmp.length; index++) {
             settings_tmp[index] = (settings_tmp[index] * (10 ** 50) );
         }
