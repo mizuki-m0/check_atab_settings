@@ -16,7 +16,7 @@ atabは**A**-slot **T**win**A**ngel**B**reakの略のような感じで。
 
 ## やってること
 試行回数n　確率p　出現回数x　の時、各設定値ごとの出現確率Pxを調べます。  
-<img src="https://latex.codecogs.com/gif.latex?\inline&space;\fn_jvn&space;Px=_nC_x(1-P)^{n-x}">  
+<img src="https://latex.codecogs.com/gif.latex?\inline&space;\fn_jvn&space;Px=_nC_xP^x(1-P)^{n-x}">  
 <img src="https://latex.codecogs.com/gif.latex?\inline&space;\fn_jvn&space;_nC_x=\frac{n!}{x!(n-x)!}">  
 各判定項目ごとのPxをかけ合わせて、最後に比率を出して終わりです。  
 私は数学そんなに詳しくないので、拾ってきた情報ですが。
