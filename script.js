@@ -1,21 +1,16 @@
 $(function () {
-    //ページ読み込み時にURLパラメーターを確認
-    var params = new Object;
-    var url_param_split = location.search.substring(1).split('&');
-    for (var i = 0; url_param_split[i]; i++) {
-        var imems = url_param_split[i].split('=');
-        params[imems[0]] = imems[1];
+    //URLからの初回描画
+    draw_by_url();
+
+    //戻るボタン使用時に再描画
+    window.onpopstate = function (event) {
+        if (event.state === null) {
+            $('input[type="number"]').each(function () {
+                this.value = "";
+            });
+            draw_by_url();
+        }
     }
-
-    //パラメーターがある場合に表示を反映
-    if (Object.keys(params).length) {
-        Object.keys(params).forEach(function (element) {
-            var val = this[element];
-            $("#" + element).val(val);
-        }, params);
-
-        draw_settings(params);
-    };
 
     //判別ボタン押下時
     $('#check_settings').on('click', function () {
@@ -51,6 +46,29 @@ $(function () {
             draw_settings([]);
         }
     });
+
+    //URLパラメーターから画面を反映させる
+    function draw_by_url() {
+        //ページ読み込み時にURLパラメーターを確認
+        var params = new Object;
+        var url_param_split = location.search.substring(1).split('&');
+        for (var i = 0; url_param_split[i]; i++) {
+            var imems = url_param_split[i].split('=');
+            params[imems[0]] = imems[1];
+        }
+
+        //パラメーターがある場合に画面を反映
+        if (Object.keys(params).length) {
+            Object.keys(params).forEach(function (element) {
+                var val = this[element];
+                $("#" + element).val(val);
+            }, params);
+
+            draw_settings(params);
+        } else {
+            draw_settings([]);
+        }
+    }
 
     //設定を確認&表示を反映させる関数
     function draw_settings(check_items) {
