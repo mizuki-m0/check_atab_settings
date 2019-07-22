@@ -115,19 +115,19 @@ function checkSettings(check_items) {
         var check_bt_class = Probability_calc(bt_img_num, check_items["bt_class"], prob_bt_class);
         check_all = multi_array(check_all, check_bt_class)
     }
-    if ("bt_sarome" in check_items) {
+    if ("bt_sarome" in check_items && check_items["bt_sarome"] > 0) {
         var check_bt_sarome = Probability_calc(bt_img_num, check_items["bt_sarome"], prob_bt_sarome);
         check_all = multi_array(check_all, check_bt_sarome)
     }
-    if ("bt_ta" in check_items) {
+    if ("bt_ta" in check_items && check_items["bt_ta"] > 0) {
         var check_bt_ta = Probability_calc(bt_img_num, check_items["bt_ta"], prob_bt_ta);
         check_all = multi_array(check_all, check_bt_ta)
     }
-    if ("bt_tf" in check_items) {
+    if ("bt_tf" in check_items && check_items["bt_tf"] > 0) {
         var check_bt_tf = Probability_calc(bt_img_num, check_items["bt_tf"], prob_bt_tf);
         check_all = multi_array(check_all, check_bt_tf)
     }
-    if ("bt_le" in check_items) {
+    if ("bt_le" in check_items && check_items["bt_le"] > 0) {
         var check_bt_le = Probability_calc(bt_img_num, check_items["bt_le"], prob_bt_le);
         check_all = multi_array(check_all, check_bt_le)
     }
@@ -159,19 +159,19 @@ function checkSettings(check_items) {
         var check_bt20_class = Probability_calc(bt20_img_num, check_items["bt20_class"], prob_bt_class);
         check_all = multi_array(check_all, check_bt20_class)
     }
-    if ("bt20_sarome" in check_items) {
+    if ("bt20_sarome" in check_items && check_items["bt20_sarome"] > 0) {
         var check_bt20_sarome = Probability_calc(bt20_img_num, check_items["bt20_sarome"], prob_bt_sarome);
         check_all = multi_array(check_all, check_bt20_sarome)
     }
-    if ("bt20_ta" in check_items) {
+    if ("bt20_ta" in check_items && check_items["bt20_ta"] > 0) {
         var check_bt20_ta = Probability_calc(bt20_img_num, check_items["bt20_ta"], prob_bt_ta);
         check_all = multi_array(check_all, check_bt20_ta)
     }
-    if ("bt20_tf" in check_items) {
+    if ("bt20_tf" in check_items && check_items["bt20_tf"] > 0) {
         var check_bt20_tf = Probability_calc(bt20_img_num, check_items["bt20_tf"], prob_bt20_tf);
         check_all = multi_array(check_all, check_bt20_tf)
     }
-    if ("bt20_le" in check_items) {
+    if ("bt20_le" in check_items && check_items["bt20_le"] > 0) {
         var check_bt20_le = Probability_calc(bt20_img_num, check_items["bt20_le"], prob_bt20_le);
         check_all = multi_array(check_all, check_bt20_le)
     }
@@ -197,15 +197,15 @@ function checkSettings(check_items) {
         var check_ba_voice_C = Probability_calc(ba_vo_num, check_items["ba_voice_C"], prob_ba_voice_C);
         check_all = multi_array(check_all, check_ba_voice_C)
     }
-    if ("ba_voice_D" in check_items) {
+    if ("ba_voice_D" in check_items && check_items["ba_voice_D"] > 0) {
         var check_ba_voice_D = Probability_calc(ba_vo_num, check_items["ba_voice_D"], prob_ba_voice_D);
         check_all = multi_array(check_all, check_ba_voice_D)
     }
-    if ("ba_voice_E" in check_items) {
+    if ("ba_voice_E" in check_items && check_items["ba_voice_E"] > 0) {
         var check_ba_voice_E = Probability_calc(ba_vo_num, check_items["ba_voice_E"], prob_ba_voice_E);
         check_all = multi_array(check_all, check_ba_voice_E)
     }
-    if ("ba_voice_F" in check_items) {
+    if ("ba_voice_F" in check_items && check_items["ba_voice_F"] > 0) {
         var check_ba_voice_F = Probability_calc(ba_vo_num, check_items["ba_voice_F"], prob_ba_voice_F);
         check_all = multi_array(check_all, check_ba_voice_F)
     }
@@ -245,7 +245,7 @@ function checkSettings(check_items) {
 
 //確率判定
 function Probability_calc(base, target, prob) {
-    if (target == "0") return [1, 1, 1, 1];
+    //if (target == "0") return [1, 1, 1, 1];
 
     var settings = new Array(0);
     var over_digit = 0;
@@ -358,22 +358,30 @@ function multi_array(all, now) {
 
 //bigIntで階乗
 function factorial_bi(k) {
-    var j = bigInt(1);
+    if (k == 0) {
+        return bigInt(1);
+    } else {
+        var j = bigInt(1);
 
-    for (var i = bigInt(1); !i.geq(k); i = i.next()) {
-        j = j.multiply(i);
+        for (var i = bigInt(1); !i.geq(k); i = i.next()) {
+            j = j.multiply(i);
+        }
+
+        return j;
     }
-
-    return j;
 }
 
 //普通の階乗
 function factorial(k) {
-    var j = 1;
+    if (k == 0) {
+        return 1;
+    } else {
+        var j = 1;
 
-    for (var i = 1; i <= k; i++) {
-        j *= i;
+        for (var i = 1; i <= k; i++) {
+            j *= i;
+        }
+
+        return j;
     }
-
-    return j;
 }
