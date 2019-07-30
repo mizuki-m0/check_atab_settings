@@ -243,145 +243,34 @@ function checkSettings(check_items) {
     return result;
 }
 
-//確率判定
-function Probability_calc(base, target, prob) {
-    //if (target == "0") return [1, 1, 1, 1];
 
-    var settings = new Array(0);
-    var over_digit = 0;
-
-    var calc_tmp = factorial(base) / (factorial(target) * factorial(base - target));
-
-    if (isNaN(calc_tmp)) {
-        const fac_N = factorial_bi(base);
-        const fac_X = factorial_bi(target);
-        const fac_N_X = factorial_bi(base - target);
-
-        calc_tmp = fac_N.divide(fac_X.multiply(fac_N_X)); //calc_tmp = fac_N / fac_X * fac_N_X
-        var calc_tmp_length = String(calc_tmp).length;
-
-        if (calc_tmp_length > 300) {
-            over_digit = Math.round(calc_tmp_length - 300)
-            var scrape = bigInt(10).pow(bigInt(Math.round(calc_tmp_length - 300)));
-            calc_tmp = calc_tmp.divide(scrape);
-        }
+//キャラごとのボイスに表示変更
+function voice_change(id) {
+    const voices = {
+        "vo_meguru": ["バッチリだねっ！", "ぴーす！", "さすがすぎるぅ～～～！", "ふぁいと、おー！", "キタキタキタキター！", "正義の味方になっちゃった～！"],
+        "vo_sumire": ["やるじゃない。", "か、かわいいっ......!!", "あなたって......結構やるのね。", "う、力が...... お、お弁当......", "ま、まあ、悪くないのかも、ね", "あなたも私の、正義の味方、だよ。"],
+        "vo_haruka": ["るんらら～♪", "どれ履いていこうかな？", "こっちおいでよ！", "一緒にがんばろ！", "しましまにしちゃうよ～！", "ずーっと一緒にいようね☆"],
+        "vo_aoi": ["なんてすばらしいのかしら～", "大きいですね～！", "はりきって参りましょう！", "マイペースで行きましょう！", "特製カレーはいかがですか？", "あなたに全ておまかせします！"],
+        "vo_kurumi": ["しっかりしなさいよね！", "何ニヤニヤしてるのよ", "チャハッ！", "やるじゃない！", "本気で行くわよっ！", "もう、察しなさいよぉこのバカー！"],
+        "vo_tesla": ["がんばってくださ～い♪", "おイタがすぎましたね", "ふんふふ～ん♪", "覚悟はいいですかぁ？...うふっ", "この後が楽しみですね～♪", "今日は帰しませんよ......？"],
+        "vo_nine": ["準備、完了", "鼓動、上昇......", "気持ち次第", "...新鮮", "好調。", "気分、最高。"],
+        "vo_lilica": ["がんばるのです！", "リリカにおまかせなのです！", "あはははははははは～～～!!", "に～らめっぷ！", "たのしーのですー☆", "すっごーーーいのですううう～！"],
+        "vo_elice": ["さっ、はりきっていきましょ！", "お楽しみはこれからよ♪", "がんばってね♪", "ばーん♪", "期待してるわよ♪", "わらわが代わってやろうか！？"],
+        "vo_sarome": ["はりきっていくっしょ～！", "ひざまづくっしょ～", "しょーっしょっしょっしょっ！しょーっしょっしょっしょ！", "キリキリ働くっしょ！", "アンタには期待してるっしょ", "アンタは一生わたしについてくればいいっしょ！"],
+        "vo_misty": ["さぁ、いこうか！", "飛び込んできたまえ！", "美しい...", "ミスティック！", "グレイト！", "ワンダフル！！"],
+        "vo_veil": ["どうでもいいね", "おはよございまのこと", "盛り上がるねっ！", "私たち人間になれるか？", "すごいのこと！", "トロける歌声めしあがれ！ヴェイルね～！"],
+        "vo_nui": ["ふーん。やっぱりね", "どうでもいいけどね。", "好きにしなよ。", "おばあさんとの約束なんだ", "今日のステージは大成功しそうだね。", "ネタは新鮮、サビ抜き厳禁、ヌイです！"],
+        "vo_urara": ["今日はねぐせ占いにするぞよ", "今日は米占いにするぞよ", "某のチャクラも全開である", "むむ、これはなにかの吉兆やも", "占いによると今日は吉！", "超高速曲玉絶対噴射パワー！"],
+        "vo_koromi": ["元気だすぱー", "なかよしだぱー！", "いい気持ちだぱ～", "そんなもんだぱ～", "うはうはだぱ～！", "ごちそうさまだぱ～！"],
+        "vo_yuki": ["ゆーきはここよ～！", "男の娘で～っす！", "めちゃマジ天使！", "照れなくていいよぉ☆", "ゆーき感激ぃ！", "え、ゆーきのデビュー決定！？マジで！？"],
+        "vo_chiyori": ["へぇ～。それで～？", "適当にがんばろ～", "あ～肩がこるわ～", "ちょっと休憩してく？", "はいはーい、学級会始めるよー", "だから人妻じゃないっていってんじゃん～！"],
+        "vo_others": ["（メアリ）グッモーニーン！", "（ブラックカーテン）この先は、お前次第だぜ？", "（ビリー）モテの予感がする！", "（ガラブシ）喜・怒・哀・楽", "（ビリー）うっせえ、ババァ！", "（メアリ）ロックンロール！カモン！"]
     }
 
-    var nCx = Number(calc_tmp);
-
-    prob.forEach(
-        function (value) {
-            if (value != 0) {
-                var last_digit = over_digit;
-
-                var Px = 1;
-                for (let index = 0; index < target; index++) {
-                    Px = Px * (1 / value);
-                    if (Px < 1) {
-                        Px = Px * 10
-                        last_digit--
-                    }
-                }
-
-                var P1nx = 1;
-                for (let index = 0; index < base - target; index++) {
-                    P1nx = P1nx * (1 - (1 / value));
-                    if (P1nx < 1) {
-                        P1nx = P1nx * 10
-                        last_digit--
-                    }
-                }
-
-                if (last_digit != 0) {
-                    var result_tmp = nCx * Px * P1nx;
-                    for (let index = 0; index > last_digit; index--) {
-                        result_tmp = result_tmp / 10;
-                    }
-                    settings.push(result_tmp);
-                } else {
-                    settings.push(nCx * Px * P1nx);
-                }
-            } else {
-                settings.push(0);
-            }
-        }
-    );
-
-    return settings;
-}
-
-//比率計算
-function perce(all) {
-    var result = new Array(0);
-    var all_sum = 0;
-
-    for (let index = 0; index < all.length; index++) {
-        all_sum += all[index];
-    }
-
-    for (let index = 0; index < all.length; index++) {
-        result.push(Math.round(all[index] / all_sum * 1000) / 10);
-    }
-
-    return result;
-}
-
-//比率の掛け合わせ
-function multi_array(all, now) {
-    var settings_tmp = new Array(0);
-
-    for (let index = 0; index < all.length; index++) {
-        settings_tmp.push(all[index] * now[index]);
-    }
-
-    var need_adjust = false
-    settings_tmp.forEach(element => {
-        var spl_element = String(element).split("e");
-        if (spl_element[1] < 0) {
-            spl_element[1] = -spl_element[1];
-        }
-        var element_length = String(spl_element[0]).length + spl_element[1];
-
-        if (element_length > 250) {
-            need_adjust = true;
-        }
-    });
-
-    if (need_adjust) {
-        for (let index = 0; index < settings_tmp.length; index++) {
-            settings_tmp[index] = (settings_tmp[index] * (10 ** 50));
-        }
-    }
-
-    return settings_tmp;
-}
-
-//bigIntで階乗
-function factorial_bi(k) {
-    if (k == 0) {
-        return bigInt(1);
-    } else {
-        var j = bigInt(1);
-
-        for (var i = bigInt(1); !i.geq(k); i = i.next()) {
-            j = j.multiply(i);
-        }
-
-        return j;
-    }
-}
-
-//普通の階乗
-function factorial(k) {
-    if (k == 0) {
-        return 1;
-    } else {
-        var j = 1;
-
-        for (var i = 1; i <= k; i++) {
-            j *= i;
-        }
-
-        return j;
-    }
+    document.getElementById("label_voice_A").innerText = voices[id][0];
+    document.getElementById("label_voice_B").innerText = voices[id][1];
+    document.getElementById("label_voice_C").innerText = voices[id][2];
+    document.getElementById("label_voice_D").innerText = voices[id][3];
+    document.getElementById("label_voice_E").innerText = voices[id][4];
+    document.getElementById("label_voice_F").innerText = voices[id][5];
 }
