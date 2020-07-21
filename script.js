@@ -1,4 +1,7 @@
 $(function () {
+    //グラフの事前作成
+    drawChart([25, 25, 25, 25])
+    
     //URLからの初回描画
     draw_by_url();
 
@@ -78,7 +81,36 @@ $(function () {
         $("#s2").text(result[1]);
         $("#s5").text(result[2]);
         $("#s6").text(result[3]);
+
+        // グラフの再描画
+        if (myPieChart) {
+            myPieChart.destroy();
+        }
+        drawChart([result[0], result[1], result[2], result[3]]);
     }
+
+    // 円グラフ
+    function drawChart(chartVal) {
+        var ctx = document.getElementById("myPieChart");
+        window.myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ["設定1", "設定2", "設定5", "設定6"],
+                datasets: [{
+                    backgroundColor: ["#4B75B9", "#F0BA32", "#3EBA2B", "#D04255"],
+                    data: chartVal
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    display: false
+                }
+            }
+        });
+    }
+
 });
 
 //数字の増減ボタン用
