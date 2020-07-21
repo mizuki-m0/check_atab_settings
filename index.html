@@ -36,13 +36,13 @@
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container" style="padding-top: 10px;">
         <div class="row">
-            <div class="col-md-9" style="padding: 10px;">
+            <div class="col-md-9">
                 <h2 class="page-header">情報入力</h2>
                 <form>
                     <div class="input-group form-group">
-                        <label for="games" class="col-sm-2 col-form-label">総ゲーム数</label>
+                        <label for="games" class="col-md-2 col-form-label">総ゲーム数</label>
                         <input type="number" min="0" class="form-control" id="games" placeholder="総ゲーム数">
                         <input type="text" name="dummy" style="display:none;">
                         <div class="input-group-append">
@@ -82,7 +82,7 @@
                     <div class="tab-pane show active" id="koyaku" role="tabpanel" aria-labelledby="koyaku-tab">
                         <form>
                             <div class="input-group form-group">
-                                <label for="bell" class="col-sm-2 col-form-label">ベル</label>
+                                <label for="bell" class="col-md-2 col-form-label">ベル</label>
                                 <input type="number" min="0" class="form-control" id="bell" placeholder="ベル">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bell', -5)">-5</button>
@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="bag" class="col-sm-2 col-form-label">カバン</label>
+                                <label for="bag" class="col-md-2 col-form-label">カバン</label>
                                 <input type="number" min="0" class="form-control" id="bag" placeholder="カバン">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bag', -5)">-5</button>
@@ -104,7 +104,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="cherry" class="col-sm-2 col-form-label">チェリー</label>
+                                <label for="cherry" class="col-md-2 col-form-label">チェリー</label>
                                 <input type="number" min="0" class="form-control" id="cherry" placeholder="チェリー">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('cherry', -5)">-5</button>
@@ -115,7 +115,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="chanceA" class="col-sm-2 col-form-label">チャンス目A</label>
+                                <label for="chanceA" class="col-md-2 col-form-label">チャンス目A</label>
                                 <input type="number" min="0" class="form-control" id="chanceA" placeholder="チャンス目A">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('chanceA', -5)">-5</button>
@@ -130,7 +130,7 @@
                     <div class="tab-pane" id="duplicate" role="tabpanel" aria-labelledby="duplicate-tab">
                         <form>
                             <div class="input-group form-group">
-                                <label for="sbb" class="col-sm-2 col-form-label">SBB</label>
+                                <label for="sbb" class="col-md-2 col-form-label">SBB</label>
                                 <input type="number" min="0" class="form-control" id="sbb" placeholder="SBB">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('sbb', -5)">-5</button>
@@ -141,7 +141,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="hbb" class="col-sm-2 col-form-label">HBB</label>
+                                <label for="hbb" class="col-md-2 col-form-label">HBB</label>
                                 <input type="number" min="0" class="form-control" id="hbb" placeholder="HBB">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('hbb', -5)">-5</button>
@@ -152,7 +152,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="bb" class="col-sm-2 col-form-label">BB</label>
+                                <label for="bb" class="col-md-2 col-form-label">BB</label>
                                 <input type="number" min="0" class="form-control" id="bb" placeholder="BB">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bb', -5)">-5</button>
@@ -163,7 +163,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="mb" class="col-sm-2 col-form-label">MB</label>
+                                <label for="mb" class="col-md-2 col-form-label">MB</label>
                                 <input type="number" min="0" class="form-control" id="mb" placeholder="MB">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('mb', -5)">-5</button>
@@ -174,7 +174,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="bag_B" class="col-sm-2 col-form-label">カバン重</label>
+                                <label for="bag_B" class="col-md-2 col-form-label">カバン重</label>
                                 <input type="number" min="0" class="form-control" id="bag_B" placeholder="カバン重">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bag_B', -5)">-5</button>
@@ -185,7 +185,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="cherry_B" class="col-sm-2 col-form-label">チェリ重</label>
+                                <label for="cherry_B" class="col-md-2 col-form-label">チェリ重</label>
                                 <input type="number" min="0" class="form-control" id="cherry_B" placeholder="チェリ重">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('cherry_B', -5)">-5</button>
@@ -196,7 +196,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="chanceA_B" class="col-sm-2 col-form-label">チャA重</label>
+                                <label for="chanceA_B" class="col-md-2 col-form-label">チャA重</label>
                                 <input type="number" min="0" class="form-control" id="chanceA_B" placeholder="チャA重">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('chanceA_B', -5)">-5</button>
@@ -211,7 +211,7 @@
                     <div class="tab-pane" id="bitaimg" role="tabpanel" aria-labelledby="bitaimg-tab">
                         <form>
                             <div class="input-group form-group">
-                                <label for="bt_meguru" class="col-sm-2 col-form-label">めぐる(赤)</label>
+                                <label for="bt_meguru" class="col-md-2 col-form-label">めぐる(赤)</label>
                                 <input type="number" min="0" class="form-control" id="bt_meguru" placeholder="めぐる(赤)">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bt_meguru', -5)">-5</button>
@@ -222,7 +222,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="bt_sumire" class="col-sm-2 col-form-label">すみれ(青)</label>
+                                <label for="bt_sumire" class="col-md-2 col-form-label">すみれ(青)</label>
                                 <input type="number" min="0" class="form-control" id="bt_sumire" placeholder="すみれ(青)">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bt_sumire', -5)">-5</button>
@@ -233,7 +233,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="bt_maguro" class="col-sm-2 col-form-label">ヴェルヌイ</label>
+                                <label for="bt_maguro" class="col-md-2 col-form-label">ヴェルヌイ</label>
                                 <input type="number" min="0" class="form-control" id="bt_maguro" placeholder="ヴェルヌイ">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bt_maguro', -5)">-5</button>
@@ -244,7 +244,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="bt_class" class="col-sm-2 col-form-label">クラスメイト</label>
+                                <label for="bt_class" class="col-md-2 col-form-label">クラスメイト</label>
                                 <input type="number" min="0" class="form-control" id="bt_class" placeholder="クラスメイト">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bt_class', -5)">-5</button>
@@ -255,7 +255,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="bt_sarome" class="col-sm-2 col-form-label">サロメ</label>
+                                <label for="bt_sarome" class="col-md-2 col-form-label">サロメ</label>
                                 <input type="number" min="0" class="form-control" id="bt_sarome" placeholder="サロメ">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bt_sarome', -5)">-5</button>
@@ -266,7 +266,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="bt_ta" class="col-sm-2 col-form-label">TA</label>
+                                <label for="bt_ta" class="col-md-2 col-form-label">TA</label>
                                 <input type="number" min="0" class="form-control" id="bt_ta" placeholder="TA">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bt_ta', -5)">-5</button>
@@ -277,7 +277,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="bt_tf" class="col-sm-2 col-form-label">TF</label>
+                                <label for="bt_tf" class="col-md-2 col-form-label">TF</label>
                                 <input type="number" min="0" class="form-control" id="bt_tf" placeholder="TF">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bt_tf', -5)">-5</button>
@@ -288,7 +288,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="bt_le" class="col-sm-2 col-form-label">リリカ</label>
+                                <label for="bt_le" class="col-md-2 col-form-label">リリカ</label>
                                 <input type="number" min="0" class="form-control" id="bt_le" placeholder="リリカ">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bt_le', -5)">-5</button>
@@ -303,7 +303,7 @@
                     <div class="tab-pane" id="bita20img" role="tabpanel" aria-labelledby="bita20img-tab">
                         <form>
                             <div class="input-group form-group">
-                                <label for="bt20_meguru" class="col-sm-2 col-form-label">めぐる(赤)</label>
+                                <label for="bt20_meguru" class="col-md-2 col-form-label">めぐる(赤)</label>
                                 <input type="number" min="0" class="form-control" id="bt20_meguru" placeholder="めぐる(赤)">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bt20_meguru', -5)">-5</button>
@@ -314,7 +314,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="bt20_sumire" class="col-sm-2 col-form-label">すみれ(青)</label>
+                                <label for="bt20_sumire" class="col-md-2 col-form-label">すみれ(青)</label>
                                 <input type="number" min="0" class="form-control" id="bt20_sumire" placeholder="すみれ(青)">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bt20_sumire', -5)">-5</button>
@@ -325,7 +325,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="bt20_maguro" class="col-sm-2 col-form-label">ヴェルヌイ</label>
+                                <label for="bt20_maguro" class="col-md-2 col-form-label">ヴェルヌイ</label>
                                 <input type="number" min="0" class="form-control" id="bt20_maguro" placeholder="ヴェルヌイ">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bt20_maguro', -5)">-5</button>
@@ -336,7 +336,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="bt20_class" class="col-sm-2 col-form-label">クラスメイト</label>
+                                <label for="bt20_class" class="col-md-2 col-form-label">クラスメイト</label>
                                 <input type="number" min="0" class="form-control" id="bt20_class" placeholder="クラスメイト">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bt20_class', -5)">-5</button>
@@ -347,7 +347,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="bt20_sarome" class="col-sm-2 col-form-label">サロメ</label>
+                                <label for="bt20_sarome" class="col-md-2 col-form-label">サロメ</label>
                                 <input type="number" min="0" class="form-control" id="bt20_sarome" placeholder="サロメ">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bt20_sarome', -5)">-5</button>
@@ -358,7 +358,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="bt20_ta" class="col-sm-2 col-form-label">TA</label>
+                                <label for="bt20_ta" class="col-md-2 col-form-label">TA</label>
                                 <input type="number" min="0" class="form-control" id="bt20_ta" placeholder="TA">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bt20_ta', -5)">-5</button>
@@ -369,7 +369,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="bt20_tf" class="col-sm-2 col-form-label">TF</label>
+                                <label for="bt20_tf" class="col-md-2 col-form-label">TF</label>
                                 <input type="number" min="0" class="form-control" id="bt20_tf" placeholder="TF">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bt20_tf', -5)">-5</button>
@@ -380,7 +380,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="bt20_le" class="col-sm-2 col-form-label">リリカ</label>
+                                <label for="bt20_le" class="col-md-2 col-form-label">リリカ</label>
                                 <input type="number" min="0" class="form-control" id="bt20_le" placeholder="リリカ">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bt20_le', -5)">-5</button>
@@ -395,7 +395,7 @@
                     <div class="tab-pane" id="bavoice" role="tabpanel" aria-labelledby="bavoice-tab">
                         <form>
                             <div class="input-group form-group">
-                                <label for="ba_voice_A" id="label_voice_A" class="col-sm-2 col-form-label">ボイスA</label>
+                                <label for="ba_voice_A" id="label_voice_A" class="col-md-2 col-form-label">ボイスA</label>
                                 <input type="number" min="0" class="form-control" id="ba_voice_A" placeholder="ボイスA">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('ba_voice_A', -5)">-5</button>
@@ -406,7 +406,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="ba_voice_B" id="label_voice_B" class="col-sm-2 col-form-label">ボイスB</label>
+                                <label for="ba_voice_B" id="label_voice_B" class="col-md-2 col-form-label">ボイスB</label>
                                 <input type="number" min="0" class="form-control" id="ba_voice_B" placeholder="ボイスB">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('ba_voice_B', -5)">-5</button>
@@ -417,7 +417,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="ba_voice_C" id="label_voice_C" class="col-sm-2 col-form-label">ボイスC</label>
+                                <label for="ba_voice_C" id="label_voice_C" class="col-md-2 col-form-label">ボイスC</label>
                                 <input type="number" min="0" class="form-control" id="ba_voice_C" placeholder="ボイスC">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('ba_voice_C', -5)">-5</button>
@@ -428,7 +428,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="ba_voice_D" id="label_voice_D" class="col-sm-2 col-form-label">ボイスD</label>
+                                <label for="ba_voice_D" id="label_voice_D" class="col-md-2 col-form-label">ボイスD</label>
                                 <input type="number" min="0" class="form-control" id="ba_voice_D" placeholder="ボイスD">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('ba_voice_D', -5)">-5</button>
@@ -439,7 +439,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="ba_voice_E" id="label_voice_E" class="col-sm-2 col-form-label">ボイスE</label>
+                                <label for="ba_voice_E" id="label_voice_E" class="col-md-2 col-form-label">ボイスE</label>
                                 <input type="number" min="0" class="form-control" id="ba_voice_E" placeholder="ボイスE">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('ba_voice_E', -5)">-5</button>
@@ -450,7 +450,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="ba_voice_F" id="label_voice_F" class="col-sm-2 col-form-label">ボイスF</label>
+                                <label for="ba_voice_F" id="label_voice_F" class="col-md-2 col-form-label">ボイスF</label>
                                 <input type="number" min="0" class="form-control" id="ba_voice_F" placeholder="ボイスF">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('ba_voice_F', -5)">-5</button>
@@ -485,7 +485,7 @@
                     <div class="tab-pane" id="rt" role="tabpanel" aria-labelledby="rt-tab">
                         <form>
                             <div class="input-group form-group">
-                                <label for="rt_games" class="col-sm-2 col-form-label">RTゲーム数</label>
+                                <label for="rt_games" class="col-md-2 col-form-label">RTゲーム数</label>
                                 <input type="number" min="0" class="form-control" id="rt_games" placeholder="RTゲーム数">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('rt_games', -5)">-5</button>
@@ -496,7 +496,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="rt_miss" class="col-sm-2 col-form-label">RTハズレ</label>
+                                <label for="rt_miss" class="col-md-2 col-form-label">RTハズレ</label>
                                 <input type="number" min="0" class="form-control" id="rt_miss" placeholder="RTハズレ">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('rt_miss', -5)">-5</button>
@@ -511,7 +511,7 @@
                     <div class="tab-pane" id="other" role="tabpanel" aria-labelledby="other-tab">
                         <form>
                             <div class="input-group form-group">
-                                <label for="bt_juwan" class="col-sm-2 col-form-label">ジュワン音</label>
+                                <label for="bt_juwan" class="col-md-2 col-form-label">ジュワン音</label>
                                 <input type="number" min="0" class="form-control" id="bt_juwan" placeholder="ジュワン音">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('bt_juwan', -1)">-1</button>
@@ -520,7 +520,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="mb_2m" class="col-sm-2 col-form-label">MB 2ムービー</label>
+                                <label for="mb_2m" class="col-md-2 col-form-label">MB 2ムービー</label>
                                 <input type="number" min="0" class="form-control" id="mb_2m" placeholder="MB 2ムービー">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('mb_2m', -1)">-1</button>
@@ -529,7 +529,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="mb_tokutei5" class="col-sm-2 col-form-label">MB確定絵 56</label>
+                                <label for="mb_tokutei5" class="col-md-2 col-form-label">MB確定絵 56</label>
                                 <input type="number" min="0" class="form-control" id="mb_tokutei5" placeholder="MB確定絵 56">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('mb_tokutei5', -1)">-1</button>
@@ -538,7 +538,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="mb_tokutei6" class="col-sm-2 col-form-label">MB確定絵 6</label>
+                                <label for="mb_tokutei6" class="col-md-2 col-form-label">MB確定絵 6</label>
                                 <input type="number" min="0" class="form-control" id="mb_tokutei6" placeholder="MB確定絵 6">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('mb_tokutei6', -1)">-1</button>
@@ -547,7 +547,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="tr_br" class="col-sm-2 col-form-label">銅トロ</label>
+                                <label for="tr_br" class="col-md-2 col-form-label">銅トロ</label>
                                 <input type="number" min="0" class="form-control" id="tr_br" placeholder="銅トロ">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('tr_br', -1)">-1</button>
@@ -556,7 +556,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="tr_kirin" class="col-sm-2 col-form-label">キリントロ</label>
+                                <label for="tr_kirin" class="col-md-2 col-form-label">キリントロ</label>
                                 <input type="number" min="0" class="form-control" id="tr_kirin" placeholder="キリントロ">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('tr_kirin', -1)">-1</button>
@@ -565,7 +565,7 @@
                                 </div>
                             </div>
                             <div class="input-group form-group">
-                                <label for="tr_rainbow" class="col-sm-2 col-form-label">虹トロ</label>
+                                <label for="tr_rainbow" class="col-md-2 col-form-label">虹トロ</label>
                                 <input type="number" min="0" class="form-control" id="tr_rainbow" placeholder="虹トロ">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick="fluc('tr_rainbow', -1)">-1</button>
@@ -577,17 +577,21 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3" style="padding: 10px;">
+            <div class="col-md-3">
                 <h2 class="page-header">推定設定</h2>
                 <button class="btn btn-danger btn-block" type="button" id="clear_btn">入力クリア</button>
                 <button class="btn btn-primary btn-block" type="button" id="check_settings">判別する</button>
-                <p style="padding-top: 10px;">
-                    <span style='color:#4B75B9;'>■</span> 設定1：<span id="s1"></span>%<br>
-                    <span style='color:#F0BA32;'>■</span> 設定2：<span id="s2"></span>%<br>
-                    <span style='color:#3EBA2B;'>■</span> 設定5：<span id="s5"></span>%<br>
-                    <span style='color:#D04255;'>■</span> 設定6：<span id="s6"></span>%
-                </p>  
-                <p><canvas id="myPieChart" style="width: 100%; height:25vh; padding-top: 10px;"></canvas></p>
+                <div class="row">
+                    <div class="col-6" style="padding-top: 10px;">
+                        <span style='color:#4B75B9;'>■</span> 設定1：<span id="s1"></span>%<br>
+                        <span style='color:#3EBA2B;'>■</span> 設定5：<span id="s5"></span>%
+                    </div>
+                    <div class="col-6" style="padding-top: 10px;">
+                        <span style='color:#F0BA32;'>■</span> 設定2：<span id="s2"></span>%<br>
+                        <span style='color:#D04255;'>■</span> 設定6：<span id="s6"></span>%
+                    </div>
+                </div>
+                <p><canvas id="myPieChart" style="width: 100%; height:25vh;"></canvas></p>
                 <p style="padding-top: 10px;">
                     測定したい項目に数値を入れてください。入力のないものは判定しません。
                 </p>
