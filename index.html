@@ -1,3 +1,34 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@Mizuki-Momose 
+Mizuki-Momose
+/
+check_atab_settings
+0
+00
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+check_atab_settings/index.html
+@Mizuki-Momose
+Mizuki-Momose グラフ機能追加
+Latest commit 33aba83 5 hours ago
+ History
+ 1 contributor
+603 lines (598 sloc)  55.8 KB
+  
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -581,16 +612,12 @@
                 <h2 class="page-header">推定設定</h2>
                 <button class="btn btn-danger btn-block" type="button" id="clear_btn">入力クリア</button>
                 <button class="btn btn-primary btn-block" type="button" id="check_settings">判別する</button>
-                <div class="row" style="padding-top: 10px;">
-                    <div class="col-6">
-                        <span style='color:#4B75B9;'>■</span> 設定1：<span id="s1"></span>%<br>
-                        <span style='color:#3EBA2B;'>■</span> 設定5：<span id="s5"></span>%
-                    </div>
-                    <div class="col-6">
-                        <span style='color:#F0BA32;'>■</span> 設定2：<span id="s2"></span>%<br>
-                        <span style='color:#D04255;'>■</span> 設定6：<span id="s6"></span>%
-                    </div>
-                </div>  
+                <p style="padding-top: 10px;">
+                    <span style='color:#4B75B9;'>■</span> 設定1：<span id="s1"></span>%<br>
+                    <span style='color:#F0BA32;'>■</span> 設定2：<span id="s2"></span>%<br>
+                    <span style='color:#3EBA2B;'>■</span> 設定5：<span id="s5"></span>%<br>
+                    <span style='color:#D04255;'>■</span> 設定6：<span id="s6"></span>%
+                </p>  
                 <p><canvas id="myPieChart" style="width: 100%; height:25vh; padding-top: 10px;"></canvas></p>
                 <p style="padding-top: 10px;">
                     測定したい項目に数値を入れてください。入力のないものは判定しません。
