@@ -1,7 +1,7 @@
 $(function () {
     //グラフの事前作成
     drawChart([25, 25, 25, 25])
-    
+
     //URLからの初回描画
     draw_by_url();
 
@@ -17,24 +17,7 @@ $(function () {
 
     //判別ボタン押下時
     $('#check_settings').on('click', function () {
-        var check_items = new Object();
-        $('input[type="number"]').each(function () {
-            if (this.value != "") {
-                check_items[this.id] = this.value;
-            }
-        });
-
-        draw_settings(check_items);
-
-        var url_param = "?";
-
-        Object.keys(check_items).forEach(function (element) {
-            var val = this[element];
-            url_param += element + "=" + val + "&";
-        }, check_items);
-
-        url_param = url_param.slice(0, -1);
-        history.pushState(null, null, url_param);
+        draw_settings();
     });
 
     //クリアボタン押下時
@@ -45,20 +28,36 @@ $(function () {
             $('input[type="number"]').each(function () {
                 this.value = "";
             });
-            history.pushState(null, null, "?");
+
+            var cookies = document.cookie.split(";");
+            for (var i = 0; i < cookies.length; i++) {
+                document.cookie = cookies[i].split("=")[0] + "=;max-age=0"
+            }
+
             draw_settings([]);
         }
     });
 
     //URLパラメーターから画面を反映させる
     function draw_by_url() {
-        //ページ読み込み時にURLパラメーターを確認
+        var cookiesArray = document.cookie.split('; ');
         var params = new Object;
-        var url_param_split = location.search.substring(1).split('&');
-        for (var i = 0; url_param_split[i]; i++) {
-            var imems = url_param_split[i].split('=');
+        //cookieからパラメーターを抽出
+        for (var c of cookiesArray) {
+            var cArray = c.split('=');
+            if (cArray != "") {
+                params[cArray[0]] = cArray[1];
+
+            }
+        }
+
+        //URIからパラメーターを抽出
+        var uri_split = location.search.substring(1).split('&');
+        for (var i = 0; uri_split[i]; i++) {
+            var imems = uri_split[i].split('=');
             params[imems[0]] = imems[1];
         }
+        history.replaceState(null, null, "/");
 
         //パラメーターがある場合に画面を反映
         if (Object.keys(params).length) {
@@ -67,14 +66,22 @@ $(function () {
                 $("#" + element).val(val);
             }, params);
 
-            draw_settings(params);
+            draw_settings();
         } else {
             draw_settings([]);
         }
     }
 
     //設定を確認&表示を反映させる関数
-    function draw_settings(check_items) {
+    function draw_settings() {
+        var check_items = new Object();
+        $('input[type="number"]').each(function () {
+            if (this.value != "") {
+                check_items[this.id] = this.value;
+                document.cookie = this.id + "=" + this.value
+            }
+        });
+
         var result = checkSettings(check_items);
 
         $("#s1").text(result[0]);
