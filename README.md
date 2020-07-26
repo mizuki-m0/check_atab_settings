@@ -20,3 +20,12 @@ atabは**A**-slot **T**win**A**ngel**B**reakの略のような感じで。
 <img src="https://latex.codecogs.com/gif.latex?\inline&space;\fn_jvn&space;_nC_x=\frac{n!}{x!(n-x)!}">  
 各判定項目ごとのPxをかけ合わせて、最後に比率を出して終わりです。  
 私は数学そんなに詳しくないので、拾ってきた情報ですが。
+
+## (おまけ)ブックマークレット機能
+マイスロの「マイカウンター」または「遊技履歴」画面で使用するとゲーム数・SBB・HBB・BB・MB・ベル・カバン・チェリー・チャンス目Aの値を自動的に取ってきます。(遊技履歴画面の場合は一番最近のものを取得します。)  
+ただし「最近の遊技履歴」画面ではHBBとBBが合わせて計算されるため、正確には出ません。なるべく「遊技履歴」画面で使用してください。
+
+手入力めんどくさいときにどうぞ。  
+~~~
+javascript:(function(){var s=document.createElement("script");s.src="https://ta.mizukian.net/bl.js";document.body.appendChild(s);})()
+~~~
