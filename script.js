@@ -1,26 +1,16 @@
 $(function () {
-    //グラフの事前作成
+    // グラフの事前作成
     drawChart([25, 25, 25, 25])
 
-    //URLからの初回描画
+    // URLからの初回描画
     draw_by_url();
 
-    //戻るボタン使用時に再描画
-    window.onpopstate = function (event) {
-        if (event.state === null) {
-            $('input[type="number"]').each(function () {
-                this.value = "";
-            });
-            draw_by_url();
-        }
-    }
-
-    //判別ボタン押下時
+    // 判別ボタン押下時
     $('#check_settings').on('click', function () {
         draw_settings();
     });
 
-    //クリアボタン押下時
+    // クリアボタン押下時
     $('#clear_btn').on('click', function () {
         if (!confirm('本当にクリアしますか？')) {
             return false;
@@ -38,11 +28,17 @@ $(function () {
         }
     });
 
-    //URLパラメーターから画面を反映させる
+    // フォーム内容変更時
+    $('.form-control').change(function () {
+        document.cookie = $(this).attr('id') + "=" + $(this).val()
+    });
+
+    // URLパラメーターから画面を反映させる
     function draw_by_url() {
         var cookiesArray = document.cookie.split('; ');
         var params = new Object;
-        //cookieからパラメーターを抽出
+
+        // cookieからパラメーターを抽出
         for (var c of cookiesArray) {
             var cArray = c.split('=');
             if (cArray != "") {
@@ -51,7 +47,7 @@ $(function () {
             }
         }
 
-        //URIからパラメーターを抽出
+        // URIからパラメーターを抽出
         var uri_split = location.search.substring(1).split('&');
         for (var i = 0; uri_split[i]; i++) {
             var imems = uri_split[i].split('=');
@@ -59,7 +55,7 @@ $(function () {
         }
         history.replaceState(null, null, "/");
 
-        //パラメーターがある場合に画面を反映
+        // パラメーターがある場合に画面を反映
         if (Object.keys(params).length) {
             Object.keys(params).forEach(function (element) {
                 var val = this[element];
@@ -72,13 +68,12 @@ $(function () {
         }
     }
 
-    //設定を確認&表示を反映させる関数
+    // 設定を確認&表示を反映させる関数
     function draw_settings() {
         var check_items = new Object();
         $('input[type="number"]').each(function () {
             if (this.value != "") {
                 check_items[this.id] = this.value;
-                document.cookie = this.id + "=" + this.value
             }
         });
 
@@ -117,19 +112,21 @@ $(function () {
             }
         });
     }
-
 });
 
-//数字の増減ボタン用
+// 数字の増減ボタン用
 function fluc(name, val) {
     if (val == 0) {
-        document.getElementById(name).value = 0;
+        document.getElementById(name).value = val;
+        document.cookie = name + "=" + val
     } else {
         var now = Number(document.getElementById(name).value);
         if (now + val > 0) {
             document.getElementById(name).value = now + val;
+            document.cookie = name + "=" + (now + val)
         } else {
             document.getElementById(name).value = 0;
+            document.cookie = name + "=" + 0
         }
     }
 }
