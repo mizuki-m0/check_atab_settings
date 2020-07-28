@@ -273,4 +273,7 @@ function voice_change(id) {
     document.getElementById("label_voice_D").innerText = voices[id][3];
     document.getElementById("label_voice_E").innerText = voices[id][4];
     document.getElementById("label_voice_F").innerText = voices[id][5];
+
+    
+    document.cookie = "label_voice=" + id;
 }

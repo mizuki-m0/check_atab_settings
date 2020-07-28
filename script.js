@@ -59,7 +59,13 @@ $(function () {
         if (Object.keys(params).length) {
             Object.keys(params).forEach(function (element) {
                 var val = this[element];
-                $("#" + element).val(val);
+                switch (element) {
+                    case "label_voice":
+                        voice_change(val);
+                        $("#" + val).addClass('active');
+                    default:
+                        $("#" + element).val(val);
+                }
             }, params);
 
             draw_settings();
