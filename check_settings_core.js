@@ -1,12 +1,11 @@
 //確率判定
 function Probability_calc(base, target, prob) {
-
     var settings = new Array(0);
     var over_digit = 0;
 
     var calc_tmp = factorial(base) / (factorial(target) * factorial(base - target));
 
-    if (isNaN(calc_tmp)) {
+    if (isNaN(calc_tmp) || !isFinite(calc_tmp)) {
         const fac_N = factorial_bi(base);
         const fac_X = factorial_bi(target);
         const fac_N_X = factorial_bi(base - target);
@@ -15,7 +14,7 @@ function Probability_calc(base, target, prob) {
         var calc_tmp_length = String(calc_tmp).length;
 
         if (calc_tmp_length > 300) {
-            over_digit = Math.round(calc_tmp_length - 300)
+            over_digit = Math.round(calc_tmp_length - 300);
             var scrape = bigInt(10).pow(bigInt(Math.round(calc_tmp_length - 300)));
             calc_tmp = calc_tmp.divide(scrape);
         }
@@ -23,43 +22,41 @@ function Probability_calc(base, target, prob) {
 
     var nCx = Number(calc_tmp);
 
-    prob.forEach(
-        function (value) {
-            if (value != 0) {
-                var last_digit = over_digit;
+    prob.forEach(function (value) {
+        if (value != 0) {
+            var last_digit = over_digit;
 
-                var Px = 1;
-                for (let index = 0; index < target; index++) {
-                    Px = Px * (1 / value);
-                    if (Px < 1) {
-                        Px = Px * 10
-                        last_digit--
-                    }
+            var Px = 1;
+            for (let index = 0; index < target; index++) {
+                Px = Px * (1 / value);
+                if (Px < 1) {
+                    Px = Px * 10;
+                    last_digit--;
                 }
-
-                var P1nx = 1;
-                for (let index = 0; index < base - target; index++) {
-                    P1nx = P1nx * (1 - (1 / value));
-                    if (P1nx < 1) {
-                        P1nx = P1nx * 10
-                        last_digit--
-                    }
-                }
-
-                if (last_digit != 0) {
-                    var result_tmp = nCx * Px * P1nx;
-                    for (let index = 0; index > last_digit; index--) {
-                        result_tmp = result_tmp / 10;
-                    }
-                    settings.push(result_tmp);
-                } else {
-                    settings.push(nCx * Px * P1nx);
-                }
-            } else {
-                settings.push(0);
             }
+
+            var P1nx = 1;
+            for (let index = 0; index < base - target; index++) {
+                P1nx = P1nx * (1 - 1 / value);
+                if (P1nx < 1) {
+                    P1nx = P1nx * 10;
+                    last_digit--;
+                }
+            }
+
+            if (last_digit != 0) {
+                var result_tmp = nCx * Px * P1nx;
+                for (let index = 0; index > last_digit; index--) {
+                    result_tmp = result_tmp / 10;
+                }
+                settings.push(result_tmp);
+            } else {
+                settings.push(nCx * Px * P1nx);
+            }
+        } else {
+            settings.push(0);
         }
-    );
+    });
 
     return settings;
 }
@@ -74,7 +71,7 @@ function perce(all) {
     }
 
     for (let index = 0; index < all.length; index++) {
-        result.push(Math.round(all[index] / all_sum * 1000) / 10);
+        result.push(Math.round((all[index] / all_sum) * 1000) / 10);
     }
 
     return result;
@@ -88,8 +85,8 @@ function multi_array(all, now) {
         settings_tmp.push(all[index] * now[index]);
     }
 
-    var need_adjust = false
-    settings_tmp.forEach(element => {
+    var need_adjust = false;
+    settings_tmp.forEach((element) => {
         var spl_element = String(element).split("e");
         if (spl_element[1] < 0) {
             spl_element[1] = -spl_element[1];
@@ -103,7 +100,7 @@ function multi_array(all, now) {
 
     if (need_adjust) {
         for (let index = 0; index < settings_tmp.length; index++) {
-            settings_tmp[index] = (settings_tmp[index] * (10 ** 50));
+            settings_tmp[index] = settings_tmp[index] * 10 ** 50;
         }
     }
 
