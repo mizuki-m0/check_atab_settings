@@ -39,52 +39,60 @@ function checkSettings(check_items) {
         prob_mb_tokutei6 = [0, 0, 0, 1];
 
     //初期設定
-    var games = check_items["games"];
     var check_all = [1, 1, 1, 1];
 
-    //子役・ボナ・重複の判定
-    if ("sbb" in check_items) {
-        var check_sbb = Probability_calc(games, check_items["sbb"], prob_sbb);
-        check_all = multi_array(check_all, check_sbb);
+    //子役・ボナの判定
+    if ("games" in check_items) {
+        var games = check_items["games"];
+
+        if ("sbb" in check_items) {
+            var check_sbb = Probability_calc(games, check_items["sbb"], prob_sbb);
+            check_all = multi_array(check_all, check_sbb);
+        }
+
+        if (!check_items["increase_acc"]) {
+            if ("sbb" in check_items && "hbb" in check_items) {
+                var check_shbb = Probability_calc(games, Number(check_items["sbb"]) + Number(check_items["hbb"]), prob_shbb);
+                check_all = multi_array(check_all, check_shbb);
+            }
+            if ("bb" in check_items) {
+                var check_bb = Probability_calc(games, check_items["bb"], prob_bb);
+                check_all = multi_array(check_all, check_bb);
+            }
+            if ("mb" in check_items) {
+                var check_mb = Probability_calc(games, check_items["mb"], prob_mb);
+                check_all = multi_array(check_all, check_mb);
+            }
+        }
+        if ("bell" in check_items) {
+            var check_bell = Probability_calc(games, check_items["bell"], prob_bell);
+            check_all = multi_array(check_all, check_bell);
+        }
+        if ("bag" in check_items) {
+            var check_bag = Probability_calc(games, check_items["bag"], prob_bag);
+            check_all = multi_array(check_all, check_bag);
+        }
+        if ("cherry" in check_items) {
+            var check_cherry = Probability_calc(games, check_items["cherry"], prob_cherry);
+            check_all = multi_array(check_all, check_cherry);
+        }
+        if ("chanceA" in check_items) {
+            var check_chanceA = Probability_calc(games, check_items["chanceA"], prob_chanceA);
+            check_all = multi_array(check_all, check_chanceA);
+        }
     }
-    if ("sbb" in check_items && "hbb" in check_items) {
-        var check_shbb = Probability_calc(games, Number(check_items["sbb"]) + Number(check_items["hbb"]), prob_shbb);
-        check_all = multi_array(check_all, check_shbb);
-    }
-    if ("bb" in check_items) {
-        var check_bb = Probability_calc(games, check_items["bb"], prob_bb);
-        check_all = multi_array(check_all, check_bb);
-    }
-    if ("mb" in check_items) {
-        var check_mb = Probability_calc(games, check_items["mb"], prob_mb);
-        check_all = multi_array(check_all, check_mb);
-    }
-    if ("bell" in check_items) {
-        var check_bell = Probability_calc(games, check_items["bell"], prob_bell);
-        check_all = multi_array(check_all, check_bell);
-    }
-    if ("bag" in check_items) {
-        var check_bag = Probability_calc(games, check_items["bag"], prob_bag);
-        check_all = multi_array(check_all, check_bag);
-    }
-    if ("cherry" in check_items) {
-        var check_cherry = Probability_calc(games, check_items["cherry"], prob_cherry);
-        check_all = multi_array(check_all, check_cherry);
-    }
-    if ("chanceA" in check_items) {
-        var check_chanceA = Probability_calc(games, check_items["chanceA"], prob_chanceA);
-        check_all = multi_array(check_all, check_chanceA);
-    }
+
+    //重複の判定
     if ("bag_B" in check_items) {
-        var check_bag_B = Probability_calc(bag, check_items["bag_B"], prob_bag_B);
+        var check_bag_B = Probability_calc(check_items["bag"], check_items["bag_B"], prob_bag_B);
         check_all = multi_array(check_all, check_bag_B);
     }
     if ("cherry_B" in check_items) {
-        var check_cherry_B = Probability_calc(cherry, check_items["cherry_B"], prob_cherry_B);
+        var check_cherry_B = Probability_calc(check_items["cherry"], check_items["cherry_B"], prob_cherry_B);
         check_all = multi_array(check_all, check_cherry_B);
     }
     if ("chanceA_B" in check_items) {
-        var check_chanceA_B = Probability_calc(chanceA, check_items["chanceA_B"], prob_chanceA_B);
+        var check_chanceA_B = Probability_calc(check_items["chanceA"], check_items["chanceA_B"], prob_chanceA_B);
         check_all = multi_array(check_all, check_chanceA_B);
     }
 

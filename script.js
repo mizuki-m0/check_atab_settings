@@ -1,18 +1,21 @@
 $(function () {
     // グラフの事前作成
-    drawChart([25, 25, 25, 25])
+    drawChart([25, 25, 25, 25]);
 
     // URLからの初回描画
     draw_by_url();
 
+    //ツールチップ
+    $('[data-toggle="tooltip"]').tooltip();
+
     // 判別ボタン押下時
-    $('#check_settings').on('click', function () {
+    $("#check_settings").on("click", function () {
         draw_settings();
     });
 
     // クリアボタン押下時
-    $('#clear_btn').on('click', function () {
-        if (!confirm('本当にクリアしますか？')) {
+    $("#clear_btn").on("click", function () {
+        if (!confirm("本当にクリアしますか？")) {
             return false;
         } else {
             $('input[type="number"]').each(function () {
@@ -21,7 +24,7 @@ $(function () {
 
             var cookies = document.cookie.split(";");
             for (var i = 0; i < cookies.length; i++) {
-                document.cookie = cookies[i].split("=")[0] + "=;max-age=0"
+                document.cookie = cookies[i].split("=")[0] + "=;max-age=0";
             }
 
             draw_settings([]);
@@ -29,28 +32,35 @@ $(function () {
     });
 
     // フォーム内容変更時
-    $('.form-control').change(function () {
-        document.cookie = $(this).attr('id') + "=" + $(this).val()
+    $(".form-control, .form-check-input").change(function () {
+        if ($(this).attr("id") == "increase_acc") {
+            document.cookie = $(this).attr("id") + "=" + $(this).prop("checked");
+        } else {
+            document.cookie = $(this).attr("id") + "=" + $(this).val();
+        }
     });
 
     // URLパラメーターから画面を反映させる
     function draw_by_url() {
-        var cookiesArray = document.cookie.split('; ');
-        var params = new Object;
+        var cookiesArray = document.cookie.split("; ");
+        var params = new Object();
 
         // cookieからパラメーターを抽出
         for (var c of cookiesArray) {
-            var cArray = c.split('=');
+            var cArray = c.split("=");
             if (cArray != "") {
-                params[cArray[0]] = cArray[1];
-
+                if (cArray[0] == "increase_acc" && cArray[1] == "true") {
+                    $("#increase_acc").prop("checked", true);
+                } else {
+                    params[cArray[0]] = cArray[1];
+                }
             }
         }
 
         // URIからパラメーターを抽出
-        var uri_split = location.search.substring(1).split('&');
+        var uri_split = location.search.substring(1).split("&");
         for (var i = 0; uri_split[i]; i++) {
-            var imems = uri_split[i].split('=');
+            var imems = uri_split[i].split("=");
             params[imems[0]] = imems[1];
         }
         history.replaceState(null, null, "/");
@@ -62,7 +72,7 @@ $(function () {
                 switch (element) {
                     case "label_voice":
                         voice_change(val);
-                        $("#" + val).addClass('active');
+                        $("#" + val).addClass("active");
                     default:
                         $("#" + element).val(val);
                 }
@@ -82,6 +92,7 @@ $(function () {
                 check_items[this.id] = this.value;
             }
         });
+        check_items["increase_acc"] = $("#increase_acc").prop("checked");
 
         var result = checkSettings(check_items);
 
@@ -101,21 +112,23 @@ $(function () {
     function drawChart(chartVal) {
         var ctx = document.getElementById("myPieChart");
         window.myPieChart = new Chart(ctx, {
-            type: 'pie',
+            type: "pie",
             data: {
                 labels: ["設定1", "設定2", "設定5", "設定6"],
-                datasets: [{
-                    backgroundColor: ["#4B75B9", "#F0BA32", "#3EBA2B", "#D04255"],
-                    data: chartVal
-                }]
+                datasets: [
+                    {
+                        backgroundColor: ["#4B75B9", "#F0BA32", "#3EBA2B", "#D04255"],
+                        data: chartVal,
+                    },
+                ],
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 legend: {
-                    display: false
-                }
-            }
+                    display: false,
+                },
+            },
         });
     }
 });
@@ -124,26 +137,26 @@ $(function () {
 function fluc(name, val) {
     if (val == 0) {
         document.getElementById(name).value = val;
-        document.cookie = name + "=" + val
+        document.cookie = name + "=" + val;
     } else {
         var now = Number(document.getElementById(name).value);
         if (now + val > 0) {
             document.getElementById(name).value = now + val;
-            document.cookie = name + "=" + (now + val)
+            document.cookie = name + "=" + (now + val);
         } else {
             document.getElementById(name).value = 0;
-            document.cookie = name + "=" + 0
+            document.cookie = name + "=" + 0;
         }
     }
 }
 
 // ズーム防止
 var ua = navigator.userAgent.toLowerCase();
-var isiOS = (ua.indexOf('iphone') > -1) || (ua.indexOf('ipad') > -1);
+var isiOS = ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1;
 if (isiOS) {
     var viewport = document.querySelector('meta[name="viewport"]');
     if (viewport) {
-        var viewportContent = viewport.getAttribute('content');
-        viewport.setAttribute('content', viewportContent + ', user-scalable=no');
+        var viewportContent = viewport.getAttribute("content");
+        viewport.setAttribute("content", viewportContent + ", user-scalable=no");
     }
 }
