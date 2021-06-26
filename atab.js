@@ -46,53 +46,53 @@ function checkSettings(check_items) {
         var games = check_items["games"];
 
         if ("sbb" in check_items) {
-            var check_sbb = Probability_calc(games, check_items["sbb"], prob_sbb);
+            var check_sbb = probabilityCalc(games, check_items["sbb"], prob_sbb);
             check_all = multi_array(check_all, check_sbb);
         }
 
         if (!check_items["increase_acc"]) {
             if ("sbb" in check_items && "hbb" in check_items) {
-                var check_shbb = Probability_calc(games, Number(check_items["sbb"]) + Number(check_items["hbb"]), prob_shbb);
+                var check_shbb = probabilityCalc(games, Number(check_items["sbb"]) + Number(check_items["hbb"]), prob_shbb);
                 check_all = multi_array(check_all, check_shbb);
             }
             if ("bb" in check_items) {
-                var check_bb = Probability_calc(games, check_items["bb"], prob_bb);
+                var check_bb = probabilityCalc(games, check_items["bb"], prob_bb);
                 check_all = multi_array(check_all, check_bb);
             }
             if ("mb" in check_items) {
-                var check_mb = Probability_calc(games, check_items["mb"], prob_mb);
+                var check_mb = probabilityCalc(games, check_items["mb"], prob_mb);
                 check_all = multi_array(check_all, check_mb);
             }
         }
         if ("bell" in check_items) {
-            var check_bell = Probability_calc(games, check_items["bell"], prob_bell);
+            var check_bell = probabilityCalc(games, check_items["bell"], prob_bell);
             check_all = multi_array(check_all, check_bell);
         }
         if ("bag" in check_items) {
-            var check_bag = Probability_calc(games, check_items["bag"], prob_bag);
+            var check_bag = probabilityCalc(games, check_items["bag"], prob_bag);
             check_all = multi_array(check_all, check_bag);
         }
         if ("cherry" in check_items) {
-            var check_cherry = Probability_calc(games, check_items["cherry"], prob_cherry);
+            var check_cherry = probabilityCalc(games, check_items["cherry"], prob_cherry);
             check_all = multi_array(check_all, check_cherry);
         }
         if ("chanceA" in check_items) {
-            var check_chanceA = Probability_calc(games, check_items["chanceA"], prob_chanceA);
+            var check_chanceA = probabilityCalc(games, check_items["chanceA"], prob_chanceA);
             check_all = multi_array(check_all, check_chanceA);
         }
     }
 
     //重複の判定
     if ("bag_B" in check_items) {
-        var check_bag_B = Probability_calc(check_items["bag"], check_items["bag_B"], prob_bag_B);
+        var check_bag_B = probabilityCalc(check_items["bag"], check_items["bag_B"], prob_bag_B);
         check_all = multi_array(check_all, check_bag_B);
     }
     if ("cherry_B" in check_items) {
-        var check_cherry_B = Probability_calc(check_items["cherry"], check_items["cherry_B"], prob_cherry_B);
+        var check_cherry_B = probabilityCalc(check_items["cherry"], check_items["cherry_B"], prob_cherry_B);
         check_all = multi_array(check_all, check_cherry_B);
     }
     if ("chanceA_B" in check_items) {
-        var check_chanceA_B = Probability_calc(check_items["chanceA"], check_items["chanceA_B"], prob_chanceA_B);
+        var check_chanceA_B = probabilityCalc(check_items["chanceA"], check_items["chanceA_B"], prob_chanceA_B);
         check_all = multi_array(check_all, check_chanceA_B);
     }
 
@@ -108,35 +108,35 @@ function checkSettings(check_items) {
         Number(check_items["bt_le"] || 0);
 
     if ("bt_meguru" in check_items) {
-        var check_bt_meguru = Probability_calc(bt_img_num, check_items["bt_meguru"], prob_bt_meguru);
+        var check_bt_meguru = probabilityCalc(bt_img_num, check_items["bt_meguru"], prob_bt_meguru);
         check_all = multi_array(check_all, check_bt_meguru);
     }
     if ("bt_sumire" in check_items) {
-        var check_bt_sumire = Probability_calc(bt_img_num, check_items["bt_sumire"], prob_bt_sumire);
+        var check_bt_sumire = probabilityCalc(bt_img_num, check_items["bt_sumire"], prob_bt_sumire);
         check_all = multi_array(check_all, check_bt_sumire);
     }
     if ("bt_maguro" in check_items) {
-        var check_bt_maguro = Probability_calc(bt_img_num, check_items["bt_maguro"], prob_bt_maguro);
+        var check_bt_maguro = probabilityCalc(bt_img_num, check_items["bt_maguro"], prob_bt_maguro);
         check_all = multi_array(check_all, check_bt_maguro);
     }
     if ("bt_class" in check_items) {
-        var check_bt_class = Probability_calc(bt_img_num, check_items["bt_class"], prob_bt_class);
+        var check_bt_class = probabilityCalc(bt_img_num, check_items["bt_class"], prob_bt_class);
         check_all = multi_array(check_all, check_bt_class);
     }
     if ("bt_sarome" in check_items && check_items["bt_sarome"] > 0) {
-        var check_bt_sarome = Probability_calc(bt_img_num, check_items["bt_sarome"], prob_bt_sarome);
+        var check_bt_sarome = probabilityCalc(bt_img_num, check_items["bt_sarome"], prob_bt_sarome);
         check_all = multi_array(check_all, check_bt_sarome);
     }
     if ("bt_ta" in check_items && check_items["bt_ta"] > 0) {
-        var check_bt_ta = Probability_calc(bt_img_num, check_items["bt_ta"], prob_bt_ta);
+        var check_bt_ta = probabilityCalc(bt_img_num, check_items["bt_ta"], prob_bt_ta);
         check_all = multi_array(check_all, check_bt_ta);
     }
     if ("bt_tf" in check_items && check_items["bt_tf"] > 0) {
-        var check_bt_tf = Probability_calc(bt_img_num, check_items["bt_tf"], prob_bt_tf);
+        var check_bt_tf = probabilityCalc(bt_img_num, check_items["bt_tf"], prob_bt_tf);
         check_all = multi_array(check_all, check_bt_tf);
     }
     if ("bt_le" in check_items && check_items["bt_le"] > 0) {
-        var check_bt_le = Probability_calc(bt_img_num, check_items["bt_le"], prob_bt_le);
+        var check_bt_le = probabilityCalc(bt_img_num, check_items["bt_le"], prob_bt_le);
         check_all = multi_array(check_all, check_bt_le);
     }
 
@@ -152,35 +152,35 @@ function checkSettings(check_items) {
         Number(check_items["bt20_le"] || 0);
 
     if ("bt20_meguru" in check_items) {
-        var check_bt20_meguru = Probability_calc(bt20_img_num, check_items["bt20_meguru"], prob_bt20_meguru);
+        var check_bt20_meguru = probabilityCalc(bt20_img_num, check_items["bt20_meguru"], prob_bt20_meguru);
         check_all = multi_array(check_all, check_bt20_meguru);
     }
     if ("bt20_sumire" in check_items) {
-        var check_bt20_sumire = Probability_calc(bt20_img_num, check_items["bt20_sumire"], prob_bt20_sumire);
+        var check_bt20_sumire = probabilityCalc(bt20_img_num, check_items["bt20_sumire"], prob_bt20_sumire);
         check_all = multi_array(check_all, check_bt20_sumire);
     }
     if ("bt20_maguro" in check_items) {
-        var check_bt20_maguro = Probability_calc(bt20_img_num, check_items["bt20_maguro"], prob_bt_maguro);
+        var check_bt20_maguro = probabilityCalc(bt20_img_num, check_items["bt20_maguro"], prob_bt_maguro);
         check_all = multi_array(check_all, check_bt20_maguro);
     }
     if ("bt20_class" in check_items) {
-        var check_bt20_class = Probability_calc(bt20_img_num, check_items["bt20_class"], prob_bt_class);
+        var check_bt20_class = probabilityCalc(bt20_img_num, check_items["bt20_class"], prob_bt_class);
         check_all = multi_array(check_all, check_bt20_class);
     }
     if ("bt20_sarome" in check_items && check_items["bt20_sarome"] > 0) {
-        var check_bt20_sarome = Probability_calc(bt20_img_num, check_items["bt20_sarome"], prob_bt_sarome);
+        var check_bt20_sarome = probabilityCalc(bt20_img_num, check_items["bt20_sarome"], prob_bt_sarome);
         check_all = multi_array(check_all, check_bt20_sarome);
     }
     if ("bt20_ta" in check_items && check_items["bt20_ta"] > 0) {
-        var check_bt20_ta = Probability_calc(bt20_img_num, check_items["bt20_ta"], prob_bt_ta);
+        var check_bt20_ta = probabilityCalc(bt20_img_num, check_items["bt20_ta"], prob_bt_ta);
         check_all = multi_array(check_all, check_bt20_ta);
     }
     if ("bt20_tf" in check_items && check_items["bt20_tf"] > 0) {
-        var check_bt20_tf = Probability_calc(bt20_img_num, check_items["bt20_tf"], prob_bt20_tf);
+        var check_bt20_tf = probabilityCalc(bt20_img_num, check_items["bt20_tf"], prob_bt20_tf);
         check_all = multi_array(check_all, check_bt20_tf);
     }
     if ("bt20_le" in check_items && check_items["bt20_le"] > 0) {
-        var check_bt20_le = Probability_calc(bt20_img_num, check_items["bt20_le"], prob_bt20_le);
+        var check_bt20_le = probabilityCalc(bt20_img_num, check_items["bt20_le"], prob_bt20_le);
         check_all = multi_array(check_all, check_bt20_le);
     }
 
@@ -188,27 +188,27 @@ function checkSettings(check_items) {
     var ba_vo_num = Number(check_items["ba_voice_A"] || 0) + Number(check_items["ba_voice_B"] || 0) + Number(check_items["ba_voice_C"] || 0) + Number(check_items["ba_voice_D"] || 0) + Number(check_items["ba_voice_E"] || 0) + Number(check_items["ba_voice_F"] || 0);
 
     if ("ba_voice_A" in check_items) {
-        var check_ba_voice_A = Probability_calc(ba_vo_num, check_items["ba_voice_A"], prob_ba_voice_A);
+        var check_ba_voice_A = probabilityCalc(ba_vo_num, check_items["ba_voice_A"], prob_ba_voice_A);
         check_all = multi_array(check_all, check_ba_voice_A);
     }
     if ("ba_voice_B" in check_items) {
-        var check_ba_voice_B = Probability_calc(ba_vo_num, check_items["ba_voice_B"], prob_ba_voice_B);
+        var check_ba_voice_B = probabilityCalc(ba_vo_num, check_items["ba_voice_B"], prob_ba_voice_B);
         check_all = multi_array(check_all, check_ba_voice_B);
     }
     if ("ba_voice_C" in check_items) {
-        var check_ba_voice_C = Probability_calc(ba_vo_num, check_items["ba_voice_C"], prob_ba_voice_C);
+        var check_ba_voice_C = probabilityCalc(ba_vo_num, check_items["ba_voice_C"], prob_ba_voice_C);
         check_all = multi_array(check_all, check_ba_voice_C);
     }
     if ("ba_voice_D" in check_items && check_items["ba_voice_D"] > 0) {
-        var check_ba_voice_D = Probability_calc(ba_vo_num, check_items["ba_voice_D"], prob_ba_voice_D);
+        var check_ba_voice_D = probabilityCalc(ba_vo_num, check_items["ba_voice_D"], prob_ba_voice_D);
         check_all = multi_array(check_all, check_ba_voice_D);
     }
     if ("ba_voice_E" in check_items && check_items["ba_voice_E"] > 0) {
-        var check_ba_voice_E = Probability_calc(ba_vo_num, check_items["ba_voice_E"], prob_ba_voice_E);
+        var check_ba_voice_E = probabilityCalc(ba_vo_num, check_items["ba_voice_E"], prob_ba_voice_E);
         check_all = multi_array(check_all, check_ba_voice_E);
     }
     if ("ba_voice_F" in check_items && check_items["ba_voice_F"] > 0) {
-        var check_ba_voice_F = Probability_calc(ba_vo_num, check_items["ba_voice_F"], prob_ba_voice_F);
+        var check_ba_voice_F = probabilityCalc(ba_vo_num, check_items["ba_voice_F"], prob_ba_voice_F);
         check_all = multi_array(check_all, check_ba_voice_F);
     }
     if ("bt_juwan" in check_items && check_items["bt_juwan"] > 0) {
@@ -217,7 +217,7 @@ function checkSettings(check_items) {
 
     //RT関係の判定
     if ("rt_games" in check_items && "rt_miss" in check_items) {
-        var check_rt_miss = Probability_calc(check_items["rt_games"], check_items["rt_miss"], prob_rt_miss);
+        var check_rt_miss = probabilityCalc(check_items["rt_games"], check_items["rt_miss"], prob_rt_miss);
         check_all = multi_array(check_all, check_rt_miss);
     }
 

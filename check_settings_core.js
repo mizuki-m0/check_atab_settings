@@ -1,57 +1,56 @@
 //確率判定
-function Probability_calc(base, target, prob) {
-    var settings = new Array(0);
-    var over_digit = 0;
+function probabilityCalc(n, x, prob_arr) {
+    let settings = new Array(0);
+    let over_digit = 0;
 
-    var calc_tmp = factorial(base) / (factorial(target) * factorial(base - target));
+    const fac_N = factorial(n);
+    const fac_X = factorial(x);
+    const fac_N_X = factorial(n - x);
 
-    if (isNaN(calc_tmp) || !isFinite(calc_tmp)) {
-        const fac_N = factorial_bi(base);
-        const fac_X = factorial_bi(target);
-        const fac_N_X = factorial_bi(base - target);
+    let nCx_temp = fac_N / (fac_X * fac_N_X);
+    const calc_tmp_length = String(nCx_temp).length;
 
-        calc_tmp = fac_N.divide(fac_X.multiply(fac_N_X));
-        var calc_tmp_length = String(calc_tmp).length;
-
-        if (calc_tmp_length > 300) {
-            over_digit = Math.round(calc_tmp_length - 300);
-            var scrape = bigInt(10).pow(bigInt(Math.round(calc_tmp_length - 300)));
-            calc_tmp = calc_tmp.divide(scrape);
-        }
+    if (calc_tmp_length > 17) {
+        over_digit = calc_tmp_length - 17;
+        nCx_temp = nCx_temp / BigInt(10) ** BigInt(over_digit);
     }
 
-    var nCx = Number(calc_tmp);
+    const nCx = Number(nCx_temp);
 
-    prob.forEach(function (value) {
-        if (value != 0) {
-            var last_digit = over_digit;
+    prob_arr.forEach(function (prob) {
+        if (prob != 0) {
+            const p = 1 / prob;
+            let last_digit = over_digit;
 
-            var Px = 1;
-            for (let index = 0; index < target; index++) {
-                Px = Px * (1 / value);
-                if (Px < 1) {
-                    Px = Px * 10;
+            // a = p^x
+            let a = 1;
+            for (let i = 0; i < x; i++) {
+                a *= p;
+                while (a < 1) {
+                    a *= 10;
                     last_digit--;
                 }
             }
 
-            var P1nx = 1;
-            for (let index = 0; index < base - target; index++) {
-                P1nx = P1nx * (1 - 1 / value);
-                if (P1nx < 1) {
-                    P1nx = P1nx * 10;
+            // b = (1-p)^(n-x)
+            let b = 1;
+            for (let i = 0; i < n - x; i++) {
+                b *= 1 - p;
+                while (b < 1) {
+                    b *= 10;
                     last_digit--;
                 }
             }
 
+            // Px = nCx * a * b
             if (last_digit != 0) {
-                var result_tmp = nCx * Px * P1nx;
-                for (let index = 0; index > last_digit; index--) {
+                let result_tmp = nCx * a * b;
+                for (let i = 0; i > last_digit; i--) {
                     result_tmp = result_tmp / 10;
                 }
                 settings.push(result_tmp);
             } else {
-                settings.push(nCx * Px * P1nx);
+                settings.push(nCx * a * b);
             }
         } else {
             settings.push(0);
@@ -62,77 +61,39 @@ function Probability_calc(base, target, prob) {
 }
 
 //比率計算
-function perce(all) {
-    var result = new Array(0);
-    var all_sum = 0;
+function perce(ratio_arr) {
+    let result = new Array(0);
+    let ratio_sum = 0;
 
-    for (let index = 0; index < all.length; index++) {
-        all_sum += all[index];
-    }
+    ratio_arr.forEach(function (ratio) {
+        ratio_sum += ratio;
+    });
 
-    for (let index = 0; index < all.length; index++) {
-        result.push(Math.round((all[index] / all_sum) * 1000) / 10);
-    }
+    ratio_arr.forEach(function (ratio) {
+        result.push(Math.round((ratio / ratio_sum) * 1000) / 10);
+    });
 
     return result;
 }
 
 //比率の掛け合わせ
-function multi_array(all, now) {
-    var settings_tmp = new Array(0);
+function multi_array(ratio_arr, this_arr) {
+    let settings = new Array(0);
 
-    for (let index = 0; index < all.length; index++) {
-        settings_tmp.push(all[index] * now[index]);
+    for (let i = 0; i < ratio_arr.length; i++) {
+        settings.push(ratio_arr[i] * this_arr[i]);
     }
 
-    var need_adjust = false;
-    settings_tmp.forEach((element) => {
-        var spl_element = String(element).split("e");
-        if (spl_element[1] < 0) {
-            spl_element[1] = -spl_element[1];
-        }
-        var element_length = String(spl_element[0]).length + spl_element[1];
-
-        if (element_length > 250) {
-            need_adjust = true;
-        }
-    });
-
-    if (need_adjust) {
-        for (let index = 0; index < settings_tmp.length; index++) {
-            settings_tmp[index] = settings_tmp[index] * 10 ** 50;
-        }
-    }
-
-    return settings_tmp;
+    return settings;
 }
 
 //bigIntで階乗
-function factorial_bi(k) {
-    if (k == 0) {
-        return bigInt(1);
-    } else {
-        var j = bigInt(1);
-
-        for (var i = bigInt(1); !i.geq(k); i = i.next()) {
-            j = j.multiply(i);
-        }
-
-        return j;
-    }
-}
-
-//普通の階乗
 function factorial(k) {
-    if (k == 0) {
-        return 1;
-    } else {
-        var j = 1;
-
-        for (var i = 1; i <= k; i++) {
-            j *= i;
-        }
-
-        return j;
+    let result = BigInt(1);
+    let i = 0;
+    while (i < k) {
+        result = result * BigInt(++i);
     }
+
+    return result;
 }
