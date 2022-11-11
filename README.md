@@ -3,7 +3,7 @@
 atabは**A**-slot **T**win**A**ngel**B**reakの略のような感じで。
 
 ## 使い方
-[GitHub Pages](https://ta.mizukian.net/)使って公開していますので、そちらで。
+[GitHub Pages](https://mizuki-momose.github.io/check_atab_settings/)使って公開していますので、そちらで。
 
 ## 判定可能な要素
 - 各子役(ベル・スイカ・チェリー・チャンス目A)
